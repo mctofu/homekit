@@ -95,7 +95,9 @@ func (v *VerifyClientController) handlePairStepVerifyResponse(in util.Container)
 	var otherPublicKey [32]byte
 	copy(otherPublicKey[:], serverPublicKey)
 	v.session.GenerateSharedKeyWithOtherPublicKey(otherPublicKey)
-	v.session.SetupEncryptionKey([]byte("Pair-Verify-Encrypt-Salt"), []byte("Pair-Verify-Encrypt-Info"))
+	if err := v.session.SetupEncryptionKey([]byte("Pair-Verify-Encrypt-Salt"), []byte("Pair-Verify-Encrypt-Info")); err != nil {
+		return nil, fmt.Errorf("session SetupEncryptionKey: %v", err)
+	}
 
 	// Decrypt
 	data := in.GetBytes(pair.TagEncryptedData)
@@ -131,7 +133,7 @@ func (v *VerifyClientController) handlePairStepVerifyResponse(in util.Container)
 		return nil, fmt.Errorf("No LTPK available for client %s", username)
 	}
 
-	if crypto.ValidateED25519Signature(entity.PublicKey, material, signature) == false {
+	if !crypto.ValidateED25519Signature(entity.PublicKey, material, signature) {
 		return nil, fmt.Errorf("Could not validate signature")
 	}
 
