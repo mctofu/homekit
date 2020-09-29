@@ -4,9 +4,9 @@ A go library and cli for interacting with HomeKit accessories. It can be used to
 
 For building HomeKit accessories with go see [brutella/hc](https://github.com/brutella/hc).
 
-## State
+## Status
 
-This project is currently in a prototype state. Many features are unimplemented (events, bluetooth, tests, etc) and implemented features may not work with all accessories. It does work with the devices I'm able to test with so it may work for you!.
+This project is currently in a prototype state. Many features are unimplemented (events, bluetooth, tests, etc) and implemented features may not work with all accessories. It does work with the devices I'm able to test with so it may work for you!
 
 The API should be considered unstable and will probably change with future updates.
 
