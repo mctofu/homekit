@@ -4,9 +4,9 @@ A go library and cli for interacting with HomeKit accessories. It can be used to
 
 For building HomeKit accessories with go see [brutella/hc](https://github.com/brutella/hc).
 
-## State
+## Status
 
-This project is currently in a prototype state. Many features are unimplemented (events, bluetooth, tests, etc) and implemented features may not work with all accessories. It does work with the devices I'm able to test with so it may work for you!.
+This project is currently in a prototype state. Many features are unimplemented (events, bluetooth, tests, etc) and implemented features may not work with all accessories. It does work with the devices I'm able to test with so it may work for you!
 
 The API should be considered unstable and will probably change with future updates.
 
@@ -14,19 +14,19 @@ The API should be considered unstable and will probably change with future updat
 
 ### Installing
 
-```
-$ go get github.com/mctofu/homekit/cmd/homekit
+```shell
+go get github.com/mctofu/homekit/cmd/homekit
 ```
 
 ### Initialize
 Create a new controller config file at `$USER_CONFIG_DIR/mctofu/homekit/default.json` and initialize it with random identity keys.
-```
-$ homekit createController
+```shell
+homekit createController
 ```
 
 ### Find a device to pair with
 
-```
+```shell
 $ homekit discover
 Detected Device: VELUX\ gateway
 Model: VELUX
@@ -40,13 +40,13 @@ Found 1 devices
 ```
 
 ### Pair with the device
-```
+```shell
 $ homekit pair --id AA:BB:CC:DD:EE:FF --pin XXX-XX-XXX --name alias
 Accessory paired successfully!
 ```
 
 ### List attributes
-```
+```shell
 $ homekit listCharacteristics --name alias
 Accessory: 1 VELUX gateway (g123ab4)
   Service: 1 AccessoryInformation (3E)
@@ -108,7 +108,7 @@ Accessory: 10 VELUX Window (123a4567890123b5)
 ```
 
 ### Get particular characteristics
-```
+```shell
 $ homekit getCharacteristics --name alias -c 2.10 -c 2.17
 2.10: CurrentTemperature
 Value: 28.5
@@ -117,8 +117,8 @@ Value: 1421
 ```
 
 ### Set characteristics
-```
-$ homekit setCharacteristics --name alias -c 3.11=60 -c 10.11=50
+```shell
+homekit setCharacteristics --name alias -c 3.11=60 -c 10.11=50
 ```
 
 ## Acknowlegments
