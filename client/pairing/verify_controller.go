@@ -155,7 +155,10 @@ func (v *VerifyClientController) handlePairStepVerifyResponse(in util.Container)
 
 	encryptedOut.SetBytes(pair.TagSignature, signature)
 
-	encryptedBytes, mac, _ := chacha20poly1305.EncryptAndSeal(v.session.EncryptionKey[:], []byte("PV-Msg03"), encryptedOut.BytesBuffer().Bytes(), nil)
+	encryptedBytes, mac, err := chacha20poly1305.EncryptAndSeal(v.session.EncryptionKey[:], []byte("PV-Msg03"), encryptedOut.BytesBuffer().Bytes(), nil)
+	if err != nil {
+		return nil, fmt.Errorf("chacha20poly1305.EncryptAndSeal: %v", err)
+	}
 
 	out.SetBytes(pair.TagEncryptedData, append(encryptedBytes, mac[:]...))
 
