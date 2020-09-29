@@ -1,0 +1,1654 @@
+- name: Accessory Flags
+  description: When set indicates accessory requires additional setup.
+  uuid: 000000A6-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.accessory-properties
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint32
+  validValues:
+    "1": Requires additional setup
+
+- name: Active
+  description: The Active characteristic indicates whether the service is currently active.
+  uuid: 000000B0-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.active
+  permissions:
+    - Paired Write
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": Inactive
+    "1": Active
+
+- name: Active Identifier
+  description: This HAP characteristic allows the accessory to indicate the target that is currently selected in the UI of the accessory.
+  uuid: 000000E7-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.active-identifier
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint32
+
+- name: Administrator Only Access
+  description: When this mode is enabled, the accessory only accepts administrator access.
+  uuid: 00000001-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.administrator-only-access
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: bool
+
+- name: Audio Feedback
+  description: This characteristic describes whether audio feedback (e.g. a beep, or other external sound mechanism) is enabled.
+  uuid: 00000005-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.audio-feedback
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: bool
+
+- name: Air Particulate Density
+  description: This characteristic indicates the current air particulate matter density in micrograms/m 3.
+  uuid: 00000064-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.air-particulate.density
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 1000
+
+- name: Air Particulate Size
+  description: This characteristic indicates the size of air particulate matter in micrometers.
+  uuid: 00000065-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.air-particulate.size
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "2.5 Micrometers"
+    "1": "10 Micrometers"
+
+- name: Air Quality
+  description: This characteristic describes the subject assessment of air quality by an accessory.
+  uuid: 00000095-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.air-quality
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 5
+  stepValue: 1
+  validValues:
+    "0": "Unknown"
+    "1": "Excellent"
+    "2": "Good"
+    "3": "Fair"
+    "4": "Inferior"
+    "5": "Poor"
+
+- name: Battery Level
+  description: This characteristic describes the current level of the battery.
+  uuid: 00000068-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.battery-level
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 100
+  stepValue: 1
+  unit: percentage
+
+- name: Brightness
+  description: This characteristic describes a perceived level of brightness, e.g. for lighting, and can be used for backlights or color.
+  uuid: 00000008-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.brightness
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: int
+  minValue: 0
+  maxValue: 100
+  stepValue: 1
+  unit: percentage
+
+- name: Button Event
+  description: Notifications on this characteristic can only be enabled by Admin controllers.
+  uuid: 00000126-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.button-event
+  permissions:
+    - Paired Read
+    - Notify
+  format: tlv8
+
+- name: Carbon Monoxide Level
+  description: This characteristic indicates the Carbon Monoxide levels detected in parts per million (ppm).
+  uuid: 00000090-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.carbon-monoxide.level
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 100
+
+- name: Carbon Monoxide Peak Level
+  description: This characteristic indicates the highest detected level (ppm) of Carbon Monoxide detected by a sensor.
+  uuid: 00000091-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.carbon-monoxide.peak-level
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 100
+
+- name: Carbon Dioxide Detected
+  description: This characteristic indicates if a sensor detects abnormal levels of Carbon Dioxide.
+  uuid: 00000092-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.carbon-dioxide.detected
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Carbon Dioxide levels are normal"
+    "1": "Carbon Dioxide levels are abnormal"
+
+- name: Carbon Dioxide Level
+  description: This characteristic indicates the detected level of Carbon Dioxide in parts per million (ppm).
+  uuid: 00000093-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.carbon-dioxide.level
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 100000
+
+- name: Carbon Dioxide Peak Level
+  description: This characteristic indicates the highest detected level (ppm) of carbon dioxide detected by a sensor.
+  uuid: 00000094-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.carbon-dioxide.peak-level
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 100000
+
+- name: Carbon Monoxide Detected
+  description: This characteristic indicates if a sensor detects abnormal levels of Carbon Monoxide.
+  uuid: 00000069-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.carbon-monoxide.detected
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Carbon Monoxide levels are normal"
+    "1": "Carbon Monoxide levels are abnormal"
+
+- name: Charging State
+  description: This characteristic describes the charging state of a battery or an accessory.
+  uuid: 0000008F-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.charging-state
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 2
+  stepValue: 1
+  validValues:
+    "0": "Not Charging"
+    "1": "Charging"
+    "2": "Not Chargeable"
+
+- name: Cooling Threshold Temperature
+  description: This characteristic describes the cooling threshold in Celsius for accessories that support simultaneous heating and cooling. The value of this characteristic represents the maximum temperature that must be reached before cooling is turned on.
+  uuid: 0000000D-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.temperature.cooling-threshold
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: float
+  minValue: 10
+  maxValue: 35
+  stepValue: 0.1
+  unit: celsius
+
+- name: Color Temperature
+  description: This characteristic describes color temperature which is represented in reciprocal megaKelvin (MK -1 ) or mirek scale.
+  uuid: 000000CE-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.color-temperature
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: uint32
+  minValue: 50
+  maxValue: 400
+  stepValue: 1
+
+- name: Contact Sensor State
+  description: This characteristic describes the state of a door/window contact sensor.
+  uuid: 0000006A-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.contact-state
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Contact is detected"
+    "1": "Contact is not detected"
+
+- name: Current Ambient Light Level
+  description: This characteristic indicates the current light level. The value is expressed in Lux units (lumens/m 2 )
+  uuid: 0000006B-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.light-level.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0.0001
+  maxValue: 100000
+  unit: lux
+
+- name: Current Horizontal Tilt Angle
+  description: This characteristic describes the current angle of horizontal slats for accessories such as windows, fans, portable heater/coolers etc. This characteristic takes values between -90 and 90. A value of 0 indicates that the slats are rotated to a fully open position. A value of -90 indicates that the slats are rotated all the way in a direction where the user-facing edge is higher than the window-facing edge.
+  uuid: 0000006C-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.horizontal-tilt.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: int
+  minValue: -90
+  maxValue: 90
+  stepValue: 1
+  unit: arcdegrees
+
+- name: Current Air Purifier State
+  description: This characteristic describes the current state of the air purifier.
+  uuid: 000000A9-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.air-purifier.state.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 2
+  stepValue: 1
+  validValues:
+    "0": "Inactive"
+    "1": "Idle"
+    "2": "Purifying Air"
+
+- name: Current Slat State
+  description: This characteristic describes the current state of the slats.
+  uuid: 000000AA-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.slat.state.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 2
+  stepValue: 1
+  validValues:
+    "0": "Fixed"
+    "1": "Jammed"
+    "2": "Swinging"
+
+- name: Current Position
+  description: This characteristic describes the current position of accessories.
+  uuid: 0000006D-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.position.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 100
+  stepValue: 1
+  unit: percentage
+
+- name: Current Vertical Tilt Angle
+  description: This characteristic describes the current angle of vertical slats for accessories such as windows, fans, portable heater/coolers etc. This characteristic takes values between -90 and 90. A value of 0 indicates that the slats are rotated to be fully open. A value of -90 indicates that the slats are rotated all the way in a direction where the user-facing edge is to the left of the window-facing edge.
+  uuid: 0000006E-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.vertical-tilt.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: int
+  minValue: -90
+  maxValue: 90
+  stepValue: 1
+  unit: arcdegrees
+
+- name: Current Humidifier Dehumidifier State
+  description: This characteristic describes the current state of a humidifier or/and a dehumidifier.
+  uuid: 000000B3-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.humidifier-dehumidifier.state.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 3
+  stepValue: 1
+  validValues:
+    "0": "Inactive"
+    "1": "Idle"
+    "2": "Humidifying"
+    "3": "Dehumidifying"
+
+- name: Current Door State
+  description: This characteristic describes the current state of a door.
+  uuid: 0000000E-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.door-state.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 4
+  stepValue: 1
+  validValues:
+    "0": "Open. The door is fully open."
+    "1": "Closed. The door is fully closed."
+    "2": "Opening. The door is actively opening."
+    "3": "Closing. The door is actively closing."
+    "4": "Stopped. The door is not moving, and it is not fully open nor fully closed."
+
+- name: Current Fan State
+  description: This characteristic describes the current state of the fan.
+  uuid: 000000AF-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.fan.state.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 2
+  stepValue: 1
+  validValues:
+    "0": "Inactive"
+    "1": "Idle"
+    "2": "Blowing Air"
+
+- name: Current Heating Cooling State
+  description: This characteristic describes the current mode of an accessory that supports cooling or heating its environment, e.g. a thermostat is "heating" a room to 75 degrees Fahrenheit.
+  uuid: 0000000F-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.heating-cooling.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 2
+  stepValue: 1
+  validValues:
+    "0": "Off."
+    "1": "Heat. The Heater is currently on."
+    "2": "Cool. Cooler is currently on."
+
+- name: Current Heater Cooler State
+  description: This characteristic describes the current state of a heater cooler.
+  uuid: 000000B1-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.heater-cooler.state.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 3
+  stepValue: 1
+  validValues:
+    "0": "Inactive"
+    "1": "Idle"
+    "2": "Heating"
+    "3": "Cooling"
+
+- name: Current Relative Humidity
+  description: This characteristic describes the current relative humidity of the accessoryʼs environment. The value is expressed as a percentage (%).
+  uuid: 00000010-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.relative-humidity.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 100
+  stepValue: 1
+  unit: percentage
+
+- name: Current Temperature
+  description: This characteristic describes the current temperature of the environment in Celsius.
+  uuid: 00000011-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.temperature.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 100
+  stepValue: 0.1
+  unit: celsius
+
+- name: Current Tilt Angle
+  description: This characteristic describes the current angle of slats for accessories such as windows, fans, portable heater/coolers etc.
+  uuid: 000000C1-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.tilt.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: int
+  minValue: -90
+  maxValue: 90
+  stepValue: 1
+  unit: arcdegrees
+
+- name: Digital Zoom
+  description: A Digital Zoom characteristic allows the control of digital zoom of a video RTP service.
+  uuid: 0000011D-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.zoom-digital
+  permissions:
+    - Paired Write
+    - Paired Read
+    - Notify
+  format: float
+
+- name: Filter Life Level
+  description: This characteristic describes the current filter life level.
+  uuid: 000000AB-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.filter.life-level
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 100
+  stepValue: 1
+
+- name: Filter Change Indication
+  description: This characteristic describes if a filter needs to be changed.
+  uuid: 000000AC-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.filter.change-indication
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Filter does not need to be changed"
+    "1": "Filter needs to be changed"
+
+- name: Firmware Revision
+  description: This characteristic describes a firmware revision string x[.y[.z]] (e.g. "100.1.1")
+  uuid: 00000052-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.firmware.revision
+  permissions:
+    - Paired Read
+
+  format: string
+
+- name: Hardware Revision
+  description: This characteristic describes a hardware revision string x[.y[.z]] (e.g. "100.1.1") and tracked when the board or components of the same accessory is changed.
+  uuid: 00000053-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.hardware.revision
+  permissions:
+    - Paired Read
+
+  format: string
+
+- name: Heating Threshold Temperature
+  description: This characteristic describes the heating threshold in Celsius for accessories that support simultaneous heating and cooling. The value of this characteristic represents the minimum temperature that must be reached before heating is turned on.
+  uuid: 00000012-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.temperature.heating-threshold
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 25
+  stepValue: 0.1
+  unit: celsius
+
+- name: Hold Position
+  description: This characteristic causes the service such as door or window covering to stop at its current position. A value of 1 must hold the state of the accessory. For e.g, the window must stop moving when this characteristic is written a value of 1. A value of 0 should be ignored. A write to "Target Position" will release the hold.
+  uuid: 0000006F-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.position.hold
+  permissions:
+    - Paired Write
+  format: bool
+
+- name: Hue
+  description: This characteristic describes hue or color.
+  uuid: 00000013-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.hue
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 360
+  stepValue: 1
+  unit: arcdegrees
+
+- name: Identify
+  description: This characteristic enables accessory to run its identify routine.
+  uuid: 00000014-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.identify
+  permissions:
+    - Paired Write
+  format: bool
+
+- name: Image Rotation
+  description: An Image Rotation characteristic allows the control of rotation of the image of a video RTP service.
+  uuid: 0000011E-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.image-rotation
+  permissions:
+    - Paired Write
+    - Paired Read
+    - Notify
+  format: float
+  validValues:
+    "0": "No rotation"
+    "90": "Rotated 90 degrees to the right"
+    "180": "Rotated 180 degrees to the right (flipped vertically)"
+    "270": "Rotated 270 degrees to the right"
+
+- name: Image Mirroring
+  description: An Image Mirroring characteristic allows the control of mirroring state of the image of a video RTP service.
+  uuid: 0000011F-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.image-mirror
+  permissions:
+    - Paired Write
+    - Paired Read
+    - Notify
+  format: bool
+  validValues:
+    "0": "Image is not mirrored"
+    "1": "Image is mirrored"
+  unit: arcdegrees
+
+- name: In Use
+  description: This characteristic describes if the service is in use. The service must be Active before the value of this characteristic can be set to in use.
+  uuid: 000000D2-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.in-use
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Not in use"
+    "1": "In use"
+
+- name: Is Configured
+  description: This characteristic describes if the service is configured for use. For example, all of the valves in an irrigation system may not be configured depending on physical wire connection.
+  uuid: 000000D6-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.is-configured
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Not Configured"
+    "1": "Configured"
+
+- name: Leak Detected
+  description: This characteristic indicates if a sensor detected a leak (e.g. water leak, gas leak). A value of 1 indicates that a leak is detected. Value should return to 0 when leak stops.
+  uuid: 00000070-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.leak-detected
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Leak is not detected"
+    "1": "Leak is detected"
+
+- name: Lock Control Point
+  description: The accessory accepts writes to this characteristic to perform vendor-specific actions as well as those defined by the "8.25 Lock Management" (page 148) of the "10.2 Lock" (page 236) . For example, user management related functions should be defined and performed using this characteristic.
+  uuid: 00000019-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.lock-management.control-point
+  permissions:
+    - Paired Write
+  format: tlv8
+
+- name: Lock Current State
+  description: The current state of the physical security mechanism (e.g. deadbolt).
+  uuid: 0000001D-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.lock-mechanism.current-state
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 3
+  stepValue: 1
+  validValues:
+    "0": "Unsecured"
+    "1": "Secured"
+    "2": "Jammed"
+    "3": "Unknown"
+
+- name: Lock Last Known Action
+  description: The last known action of the lock mechanism (e.g. deadbolt).
+  uuid: 0000001C-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.lock-mechanism.last-known-action
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 8
+  stepValue: 1
+  validValues:
+    "0": "Secured using physical movement, interior"
+    "1": "Unsecured using physical movement, interior"
+    "2": "Secured using physical movement, exterior"
+    "3": "Unsecured using physical movement, exterior"
+    "4": "Secured with keypad"
+    "5": "Unsecured with keypad"
+    "6": "Secured remotely"
+    "7": "Unsecured remotely"
+    "8": "Secured with Automatic Secure timeout"
+
+- name: Lock Management Auto Security Timeout
+  description: A value greater than 0 indicates if the lock mechanism enters the unsecured state, it will automatically attempt to enter the secured state after n seconds, where n is the value provided in the write. A value of 0 indicates this feature is disabled.
+  uuid: 0000001A-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.lock-management.auto-secure-timeout
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: uint32
+  unit: seconds
+
+- name: Lock Physical Controls
+  description: This characteristic describes a way to lock a set of physical controls on an accessory (eg. child lock).
+  uuid: 000000A7-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.lock-physical-controls
+  permissions:
+    - Paired Write
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Control lock disabled"
+    "1": "Control lock enabled"
+
+- name: Lock Target State
+  description: The target state of the physical security mechanism (e.g. deadbolt).
+  uuid: 0000001E-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.lock-mechanism.target-state
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Unsecured"
+    "1": "Secured"
+
+- name: Logs
+  description: Read from this characteristic to get timestamped logs from the accessory.
+  uuid: 0000001F-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.logs
+  permissions:
+    - Paired Read
+    - Notify
+  format: tlv8
+
+- name: Manufacturer
+  description: This characteristic contains the name of the company whose brand will appear on the accessory, e.g., "Acme".
+  uuid: 00000020-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.manufacturer
+  permissions:
+    - Paired Read
+
+  format: string
+  maxLength: 64
+
+- name: Model
+  description: This characteristic contains the manufacturer-specific model of the accessory, e.g. "A1234". The minimum length of this characteristic must be 1.
+  uuid: 00000021-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.model
+  permissions:
+    - Paired Read
+
+  format: string
+  maxLength: 64
+
+- name: Motion Detected
+  description: This characteristic indicates if motion (e.g. a person moving) was detected.
+  uuid: 00000022-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.motion-detected
+  permissions:
+    - Paired Read
+    - Notify
+  format: bool
+
+- name: Mute
+  description: A Mute characteristic allows the control of audio input or output accessory respectively.
+  uuid: 0000011A-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.mute
+  permissions:
+    - Paired Write
+    - Paired Read
+    - Notify
+  format: bool
+  validValues:
+    "0": "Mute is Off / Audio is On"
+    "1": "Mute is On / There is no Audio"
+
+- name: Name
+  description: This characteristic describes a name and must not be a null value.
+  uuid: 00000023-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.name
+  permissions:
+    - Paired Read
+
+  format: string
+  maxLength: 64
+
+- name: Night Vision
+  description: A Night Vision characteristic allows the control of night vision mode on a video RTP service.
+  uuid: 0000011B-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.night-vision
+  permissions:
+    - Paired Write
+    - Paired Read
+    - Notify
+  format: bool
+  validValues:
+    "0": "Disable night-vision mode"
+    "1": "Enable night-vision mode"
+
+- name: Nitrogen Dioxide Density
+  description: This characteristic indicates the current NO2 density in micrograms/m 3.
+  uuid: 000000C4-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.density.no2
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 1000
+
+- name: Obstruction Detected
+  description: This characteristic describes the current state of an obstruction sensor, such as one that is used in a garage door. If the state is true then there is an obstruction detected.
+  uuid: 00000024-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.obstruction-detected
+  permissions:
+    - Paired Read
+    - Notify
+  format: bool
+
+- name: PM2.5 Density
+  description: This characteristic indicates the current PM2.5 micrometer particulate density in micrograms/m 3.
+  uuid: 000000C6-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.density.pm2_5
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 1000
+
+- name: Occupancy Detected
+  description: This characteristic indicates if occupancy was detected (e.g. a person present). A value of 1 indicates occupancy is detected. Value should return to 0 when occupancy is not detected.
+  uuid: 00000071-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.occupancy-detected
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Occupancy is not detected"
+    "1": "Occupancy is detected"
+
+- name: Optical Zoom
+  description: A Digital Zoom characteristic allows the control of digital zoom of a video RTP service.
+  uuid: 0000011C-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.zoom-optical
+  permissions:
+    - Paired Write
+    - Paired Read
+    - Notify
+  format: float
+
+- name: Outlet In Use
+  description: This characteristic describes if the power outlet has an appliance e.g., a floor lamp, physically plugged in. This characteristic is set to True even if the plugged-in appliance is off.
+  uuid: 00000026-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.outlet-in-use
+  permissions:
+    - Paired Read
+    - Notify
+  format: bool
+
+- name: On
+  description: This characteristic represents the states for “on" and “off".
+  uuid: 00000025-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.on
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: bool
+
+- name: Ozone Density
+  description: This characteristic indicates the current ozone density in micrograms/m 3.
+  uuid: 000000C3-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.density.ozone
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 1000
+
+- name: PM10 Density
+  description: This characteristic indicates the current PM10 micrometer particulate density in micrograms/m 3.
+  uuid: 000000C7-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.density.pm10
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 1000
+
+- name: Position State
+  description: This characteristic describes the state of the position of accessories.
+  uuid: 00000072-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.position.state
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 2
+  stepValue: 1
+  validValues:
+    "0": "Going to the minimum value specified in metadata"
+    "1": "Going to the maximum value specified in metadata"
+    "2": "Stopped"
+
+- name: Program Mode
+  description: This characteristic describes if there are programs scheduled on the accessory. If there are Programs scheduled on the accessory and the accessory is used for manual operation, the value of this characteristic must be Program Scheduled, currently overridden to manual mode.
+  uuid: 000000D1-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.program-mode
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 2
+  stepValue: 1
+  validValues:
+    "0": "No Programs Scheduled"
+    "1": "Program Scheduled"
+    "2": "Program Scheduled, currently overriden to manual mode"
+
+- name: Programmable Switch Event
+  description: This characteristic describes an event generated by a programmable switch.
+  uuid: 00000073-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.input-event
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 2
+  stepValue: 1
+  validValues:
+    "0": "Single Press"
+    "1": "Double Press"
+    "2": "Long Press"
+
+- name: Relative Humidity Dehumidifier Threshold
+  description: This characteristic describes the relative humidity dehumidifier threshold. The value of this characteristic represents the maximum relative humidity that must be reached before dehumidifier is turned on.
+  uuid: 000000C9-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.relative-humidity.dehumidifier-threshold
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 100
+  stepValue: 1
+  unit: percentage
+
+- name: Relative Humidity Humidifier Threshold
+  description: This characteristic describes the relative humidity humidifier threshold. The value of this characteristic represents the minimum relative humidity that must be reached before humidifier is turned on.
+  uuid: 000000CA-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.relative-humidity.humidifier-threshold
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 100
+  stepValue: 1
+  unit: percentage
+
+- name: Remaining Duration
+  description: This characteristic describes the remaining duration on the accessory in seconds.
+  uuid: 000000D4-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.remaining-duration
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint32
+  minValue: 0
+  maxValue: 3600
+  stepValue: 1
+
+- name: Reset Filter Indication
+  description: This characteristic allows a user to reset the filter indication. When the value of 1 is written to this characteristic by the user, the accessory should reset it to 0 once the relevant action to reset the filter indication is executed. If the accessory supports Filter Change Indication, the value of that characteristic should also reset back to 0.
+  uuid: 000000AD-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.filter.reset-indication
+  permissions:
+    - Paired Write
+  format: uint8
+  minValue: 1
+  maxValue: 1
+
+- name: Rotation Direction
+  description: This characteristic describes the direction of rotation of a fan.
+  uuid: 00000028-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.rotation.direction
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: int
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Clockwise"
+    "1": "Counter-clockwise"
+
+- name: Rotation Speed
+  description: This characteristic describes the rotation speed of a fan.
+  uuid: 00000029-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.rotation.speed
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 100
+  stepValue: 1
+  unit: percentage
+
+- name: Saturation
+  description: This characteristic describes color saturation.
+  uuid: 0000002F-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.saturation
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 100
+  stepValue: 1
+  unit: percentage
+
+- name: Security System Alarm Type
+  description: This characteristic describes the type of alarm triggered by a security system. A value of 1 indicates an ʼunknownʼ cause. Value should revert to 0 when the alarm conditions are cleared.
+  uuid: 0000008E-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.security-system.alarm-type
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+
+- name: Security System Current State
+  description: This characteristic describes the state of a security system
+  uuid: 00000066-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.security-system-state.current
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 4
+  stepValue: 1
+  validValues:
+    "0": "Stay Arm. The home is occupied and the residents are active. e.g. morning or evenings"
+    "1": "Away Arm. The home is unoccupied"
+    "2": "Night Arm. The home is occupied and the residents are sleeping"
+    "3": "Disarmed"
+    "4": "Alarm Triggered"
+
+- name: Security System Target State
+  description: This characteristic describes the target state of the security system.
+  uuid: 00000067-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.security-system-state.target
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 3
+  stepValue: 1
+  validValues:
+    "0": "Stay Arm. The home is occupied and the residents are active. e.g. morning or evenings"
+    "1": "Away Arm. The home is unoccupied"
+    "2": "Night Arm. The home is occupied and the residents are sleeping"
+    "3": "Disarm"
+
+- name: Selected Audio Stream Configuration
+  description: This is a control point characteristic that allows a controller to specify the selected audio attributes to be used forstreaming audio from the accessory.
+  uuid: 00000128-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.selected-audio-stream-configuration
+  permissions:
+    - Paired Read
+    - Paired Write
+
+  format: tlv8
+
+- name: Serial Number
+  description: This characteristic contains the manufacturer-specific serial number of the accessory, e.g. "1A2B3C4D5E6F". The length must be greater than 1.
+  uuid: 00000030-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.serial-number
+  permissions:
+    - Paired Read
+
+  format: string
+  maxLength: 64
+
+- name: Service Label Index
+  description: This characteristic should be used identify the index of the label from the Service Label Namespace.
+  uuid: 000000CB-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.service-label-index
+  permissions:
+    - Paired Read
+
+  format: uint8
+  minValue: 1
+  stepValue: 1
+
+- name: Service Label Namespace
+  description: This characteristic describes the naming schema for an accessory. For example, this characteristic can be used to describe the type of labels used to identify individual services of an accessory.
+  uuid: 000000CD-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.service-label-namespace
+  permissions:
+    - Paired Read
+
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Dots. For e.g . .. ..."
+    "1": "Arabic numerals. For e.g. 0,1,2,3"
+
+- name: Setup Data Stream Transport
+  description: This is a control point characteristic which allows the controller to set up the data stream.
+  uuid: 00000131-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.setup-data-stream-transport
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Write Response
+  format: tlv8
+
+- name: Selected RTP Stream Configuration
+  description: The Selected RTP Stream Configuration characteristic is a control point characteristic that allows a controller to specify the selected video and audio attributes to be used for streaming audio and video from an IP camera accessory.
+  uuid: 00000117-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.selected-rtp-stream-configuration
+  permissions:
+    - Paired Read
+    - Paired Write
+
+  format: tlv8
+
+- name: Setup Endpoints
+  description: The Setup Endpoints characteristic allows a controller to exchange IP address and port information with the IP camera.
+  uuid: 00000118-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.setup-endpoints
+  permissions:
+    - Paired Read
+    - Paired Write
+
+  format: tlv8
+
+- name: Siri Input Type
+  description: This characteristic describes the type of Siri input used by the accessory.
+  uuid: 00000132-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.siri-input-type
+  permissions:
+    - Paired Read
+
+  format: uint8
+  validValues:
+    "0": "Push button triggered Apple TV"
+
+- name: Slat Type
+  description: This characteristic describes the type of the slats.
+  uuid: 000000C0-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.type.slat
+  permissions:
+    - Paired Read
+
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Horizontal"
+    "1": "Vertical"
+
+- name: Smoke Detected
+  description: This characteristic indicates if a sensor detects abnormal levels of smoke.
+  uuid: 00000076-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.smoke-detected
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Smoke is not detected"
+    "1": "Smoke is detected"
+
+- name: Status Active
+  description: This characteristic describes an accessoryʼs current working status. A value of true indicates that the accessory is active and is functioning without any errors.
+  uuid: 00000075-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.status-active
+  permissions:
+    - Paired Read
+    - Notify
+  format: bool
+
+- name: Status Fault
+  description: This characteristic describes an accessory which has a fault. A non-zero value indicates that the accessory has experienced a fault that may be interfering with its intended functionality. A value of 0 indicates that there is no fault.
+  uuid: 00000077-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.status-fault
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "No Fault"
+    "1": "General Fault"
+
+- name: Status Jammed
+  description: This characteristic describes an accessory which is in a jammed state. A status of 1 indicates that an accessoryʼs mechanisms are jammed prevents it from functionality normally. Value should return to 0 when conditions that jam the accessory are rectified.
+  uuid: 00000078-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.status-jammed
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Not Jammed"
+    "1": "Jammed"
+
+- name: Status Low Battery
+  description: This characteristic describes an accessoryʼs battery status. A status of 1 indicates that the battery level of the accessory is low. Value should return to 0 when the battery charges to a level thats above the low threshold.
+  uuid: 00000079-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.status-lo-batt
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Battery level is normal"
+    "1": "Battery level is low"
+
+- name: Status Tampered
+  description: This characteristic describes an accessory which has been tampered with. A status of 1 indicates that the accessory has been tampered with. Value should return to 0 when the accessory has been reset to a non-tampered state.
+  uuid: 0000007A-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.status-tampered
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Accessory is not tampered"
+    "1": "Accessory is tampered with"
+
+- name: Streaming Status
+  description: A Streaming Status characteristic allows an IP Camera accessory to describe the status of the RTP Stream Management service.
+  uuid: 00000120-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.streaming-status
+  permissions:
+    - Paired Read
+    - Notify
+  format: tlv8
+
+- name: Supported Audio Stream Configuration
+  description: A Supported Audio Stream Configuration characteristic allows an accessory to indicate the parameters supported for streaming audio (from a microphone and/or to a speaker) over an RTP session.
+  uuid: 00000115-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.supported-audio-configuration
+  permissions:
+    - Paired Read
+
+  format: tlv8
+
+- name: Supported Data Stream Transport Configuration
+  description: This characteristics describes the data stream transport supported by the accessory.
+  uuid: 00000130-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.supported-data-stream-transport-configuration
+  permissions:
+    - Paired Read
+
+  format: tlv8
+
+- name: Supported RTP Configuration
+  description: The Supported RTP Configuration characteristic allows an accessory to describe the supported configuration parameters for the RTP video service used for streaming and other operations.
+  uuid: 00000116-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.supported-rtp-configuration
+  permissions:
+    - Paired Read
+
+  format: tlv8
+
+- name: Supported Video Stream Configuration
+  description: A Supported Video Stream Configuration characteristic allows an IP Camera accessory to describe the parameters supported for streaming video over an RTP session.
+  uuid: 00000114-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.supported-video-stream-configuration
+  permissions:
+    - Paired Read
+
+  format: tlv8
+
+- name: Sulphur Dioxide Density
+  description: This characteristic indicates the current SO2 density in micrograms/m 3.
+  uuid: 000000C5-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.density.so2
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 1000
+
+- name: Swing Mode
+  description: This characteristic describes if swing mode is enabled.
+  uuid: 000000B6-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.swing-mode
+  permissions:
+    - Paired Read
+    - Notify, Paired Write
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Swing disabled"
+    "1": "Swing enabled"
+
+- name: Target Air Purifier State
+  description: This characteristic describes the target state of the air purifier.
+  uuid: 000000A8-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.air-purifier.state.target
+  permissions:
+    - Paired Write
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Manual"
+    "1": "Auto"
+
+- name: Target Fan State
+  description: This characteristic describes the target state of the fan.
+  uuid: 000000BF-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.fan.state.target
+  permissions:
+    - Paired Write
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Manual"
+    "1": "Auto"
+
+- name: Target Tilt Angle
+  description: This characteristic describes the target angle of slats for accessories such as windows, fans, portable heater/coolers etc.
+  uuid: 000000C2-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.tilt.target
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: int
+  minValue: -90
+  maxValue: 90
+  stepValue: 1
+  unit: arcdegrees
+
+- name: Set Duration
+  description: This characteristic describes the set duration in seconds.
+  uuid: 000000D3-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.set-duration
+  permissions:
+    - Paired Write
+    - Paired Read
+    - Notify
+  format: uint32
+  minValue: 0
+  maxValue: 3600
+  stepValue: 1
+
+- name: Target Control Supported Configuration
+  description: This characteristic allows the accessory to indicate the configuration it supports and is encoded as a list of TLV8 tuples.
+  uuid: 00000123-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.supported-target-configuration
+  permissions:
+    - Paired Read
+
+  format: tlv8
+
+- name: Target Control List
+  description: This HAP characteristic allows a controller to manage the association of targets with the accessory.
+  uuid: 00000124-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.target-list
+  permissions:
+    - Paired Write
+    - Paired Read
+    - Write Response
+  format: tlv8
+
+- name: Target Horizontal Tilt Angle
+  description: This characteristic describes the target angle of horizontal slats for accessories such as windows, fans, portable heater/coolers etc.
+  uuid: 0000007B-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.horizontal-tilt.target
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: int
+  minValue: -90
+  maxValue: 90
+  stepValue: 1
+  unit: arcdegrees
+
+- name: Target Heater Cooler State
+  description: This characteristic describes the target state of heater cooler.
+  uuid: 000000B2-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.heater-cooler.state.target
+  permissions:
+    - Paired Write
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 2
+  stepValue: 1
+  validValues:
+    "0": "Heat or Cool"
+    "1": "Heat"
+    "2": "Cool"
+
+- name: Target Humidifier Dehumidifier State
+  description: This characteristic describes the target state of a humidifier or/and a dehumidifier.
+  uuid: 000000B4-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.humidifier-dehumidifier.state.target
+  permissions:
+    - Paired Read
+    - Notify, Paired Write
+  format: uint8
+  minValue: 0
+  maxValue: 2
+  stepValue: 1
+  validValues:
+    "0": "Humidifier or Dehumidifier"
+    "1": "Humidifier"
+    "2": "Dehumidifier"
+
+- name: Target Position
+  description: This characteristic describes the target position of accessories.
+  uuid: 0000007C-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.position.target
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 100
+  stepValue: 1
+  unit: percentage
+
+- name: Target Door State
+  description: This characteristic describes the target state of a door.
+  uuid: 00000032-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.door-state.target
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Open"
+    "1": "Closed"
+
+- name: Target Heating Cooling State
+  description: This characteristic describes the target mode of an accessory that supports heating/cooling, e.g. a thermostat.
+  uuid: 00000033-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.heating-cooling.target
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 3
+  stepValue: 1
+  validValues:
+    "0": "Off"
+    "1": "Heat. If the current temperature is below the target temperature then
+turn on heating."
+    "2": "Cool. If the current temperature is above the target temperature then
+turn on cooling."
+    "3": "Auto. Turn on heating or cooling to maintain temperature within the
+heating and cooling threshold of the target temperature."
+
+- name: Target Relative Humidity
+  description: This characteristic describes the target relative humidity that the accessory is actively attempting to reach. The value is expressed as a percentage (%).
+  uuid: 00000034-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.relative-humidity.target
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 100
+  stepValue: 1
+  unit: percentage
+
+- name: Target Temperature
+  description: This characteristic describes the target temperature in Celsius that the accessory is actively attempting to reach.
+  uuid: 00000035-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.temperature.target
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: float
+  minValue: 10.0
+  maxValue: 38.0
+  stepValue: 0.1
+  unit: celsius
+
+- name: Temperature Display Units
+  description: This characteristic describes units of temperature used for presentation purposes (e.g. the units of temperature displayed on the screen).
+  uuid: 00000036-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.temperature.units
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 1
+  stepValue: 1
+  validValues:
+    "0": "Celsius"
+    "1": "Fahrenheit"
+
+- name: Target Vertical Tilt Angle
+  description: This characteristic describes the target angle of vertical slats for accessories such as windows, fans, portable heater/coolers etc.
+  uuid: 0000007D-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.vertical-tilt.target
+  permissions:
+    - Paired Read
+    - Paired Write
+    - Notify
+  format: int
+  minValue: -90
+  maxValue: 90
+  stepValue: 1
+  unit: arcdegrees
+
+- name: Valve Type
+  description: This characteristic describes the type of valve.
+  uuid: 000000D5-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.valve-type
+  permissions:
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 3
+  stepValue: 1
+  validValues:
+    "0": "Generic valve"
+    "1": "Irrigation"
+    "2": "Shower head"
+    "3": "Water faucet"
+
+- name: Version
+  description: This characteristic contains a version string.
+  uuid: 00000037-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.version
+  permissions:
+    - Paired Read
+
+  format: string
+  maxLength: 64
+
+- name: VOC Density
+  description: This characteristic indicates the current volatile organic compound density in micrograms/m 3 .
+  uuid: 000000C8-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.density.voc
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 1000
+
+- name: Volume
+  description: A Volume characteristic allows the control of input or output volume of an audio input or output accessory respectively.
+  uuid: 00000119-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.volume
+  permissions:
+    - Paired Write
+    - Paired Read
+    - Notify
+  format: uint8
+  minValue: 0
+  maxValue: 100
+  stepValue: 1
+  unit: percentage
+
+- name: Water Level
+  description: This characteristic describes the current water level.
+  uuid: 000000B5-0000-1000-8000-0026BB765291
+  type: public.hap.characteristic.water-level
+  permissions:
+    - Paired Read
+    - Notify
+  format: float
+  minValue: 0
+  maxValue: 100
+  stepValue: 1
+  unit: percentage
