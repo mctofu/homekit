@@ -1,6 +1,7 @@
 package config
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -60,12 +61,15 @@ func SaveControllerConfig(configPath string, cfg *ControllerConfig, overwrite bo
 		return err
 	}
 
-	data, err := json.MarshalIndent(cfg, "", "  ")
-	if err != nil {
+	var output bytes.Buffer
+	encoder := json.NewEncoder(&output)
+	encoder.SetIndent("", "  ")
+
+	if err := encoder.Encode(cfg); err != nil {
 		return err
 	}
 
-	if err := ioutil.WriteFile(filePath, data, 0600); err != nil {
+	if err := ioutil.WriteFile(filePath, output.Bytes(), 0600); err != nil {
 		return err
 	}
 
