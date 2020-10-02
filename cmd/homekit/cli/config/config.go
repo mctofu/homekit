@@ -1,6 +1,7 @@
 package config
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -60,13 +61,38 @@ func SaveControllerConfig(configPath string, cfg *ControllerConfig, overwrite bo
 		return err
 	}
 
-	data, err := json.MarshalIndent(cfg, "", "  ")
-	if err != nil {
+	var output bytes.Buffer
+	encoder := json.NewEncoder(&output)
+	encoder.SetIndent("", "  ")
+
+	if err := encoder.Encode(cfg); err != nil {
 		return err
 	}
 
-	if err := ioutil.WriteFile(filePath, data, 0600); err != nil {
+	if err := WriteConfig(filePath, output.Bytes()); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// WriteConfig writes data to path but first writes it to a temporary file
+// to avoid errors where the write fails & the data from the original config
+// is lost.
+func WriteConfig(path string, data []byte) error {
+	tempPath := path + ".new"
+	if err := ioutil.WriteFile(tempPath, data, 0600); err != nil {
+		return fmt.Errorf("write temp: %v", err)
+	}
+
+	if _, err := os.Stat(path); !os.IsNotExist(err) {
+		if err := os.Remove(path); err != nil {
+			return fmt.Errorf("remove existing: %v", err)
+		}
+	}
+
+	if err := os.Rename(tempPath, path); err != nil {
+		return fmt.Errorf("rename: %v", err)
 	}
 
 	return nil
