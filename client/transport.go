@@ -278,9 +278,9 @@ func (m *monitoredConnection) SetDeadline(t time.Time) error {
 }
 
 func (m *monitoredConnection) SetReadDeadline(t time.Time) error {
-	return m.SetReadDeadline(t)
+	return m.conn.SetReadDeadline(t)
 }
 
 func (m *monitoredConnection) SetWriteDeadline(t time.Time) error {
-	return m.SetWriteDeadline(t)
+	return m.conn.SetWriteDeadline(t)
 }
