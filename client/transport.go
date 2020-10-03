@@ -55,7 +55,7 @@ type HomeKitSecureDialer struct {
 	dialer     IPDialer
 	accessory  *AccessoryConnectionConfig
 	controller *ControllerIdentity
-	conn       net.Conn
+	conn       *monitoredConnection
 	connMux    sync.Mutex
 }
 
@@ -81,7 +81,7 @@ func (h *HomeKitSecureDialer) Dial(ctx context.Context, network, addr string) (n
 		if err != nil {
 			return nil, fmt.Errorf("establish connection: %v", err)
 		}
-		h.conn = conn
+		h.conn = &monitoredConnection{conn: conn}
 	}
 
 	return h.conn, nil
@@ -137,13 +137,13 @@ func (h *HomeKitSecureDialer) establishConnection(ctx context.Context, network, 
 	return hapConn, nil
 }
 
-// Close any underlying connections.
+// Close any underlying connections if needed.
 func (h *HomeKitSecureDialer) Close() error {
 	h.connMux.Lock()
 	defer h.connMux.Unlock()
 
 	if h.conn != nil {
-		return h.conn.Close()
+		return h.conn.CloseIfNeeded()
 	}
 	return nil
 }
@@ -224,4 +224,63 @@ func (i *detachableConnection) SetReadDeadline(t time.Time) error {
 // SetWriteDeadline delegates to the underlying connection.
 func (i *detachableConnection) SetWriteDeadline(t time.Time) error {
 	return i.conn.SetWriteDeadline(t)
+}
+
+// monitoredConnection wraps a net.Conn and tracks calls to Close(). This allows
+// avoiding errors when Close() is called more than once.
+type monitoredConnection struct {
+	conn     net.Conn
+	closeMux sync.Mutex
+	closed   bool
+}
+
+func (m *monitoredConnection) Read(b []byte) (n int, err error) {
+	return m.conn.Read(b)
+}
+
+func (m *monitoredConnection) Write(b []byte) (n int, err error) {
+	return m.conn.Write(b)
+}
+
+func (m *monitoredConnection) Close() error {
+	m.closeMux.Lock()
+	defer m.closeMux.Unlock()
+
+	return m.close()
+}
+
+func (m *monitoredConnection) CloseIfNeeded() error {
+	m.closeMux.Lock()
+	defer m.closeMux.Unlock()
+
+	if m.closed {
+		return nil
+	}
+
+	return m.close()
+}
+
+func (m *monitoredConnection) close() error {
+	m.closed = true
+	return m.conn.Close()
+}
+
+func (m *monitoredConnection) LocalAddr() net.Addr {
+	return m.conn.LocalAddr()
+}
+
+func (m *monitoredConnection) RemoteAddr() net.Addr {
+	return m.conn.RemoteAddr()
+}
+
+func (m *monitoredConnection) SetDeadline(t time.Time) error {
+	return m.conn.SetDeadline(t)
+}
+
+func (m *monitoredConnection) SetReadDeadline(t time.Time) error {
+	return m.SetReadDeadline(t)
+}
+
+func (m *monitoredConnection) SetWriteDeadline(t time.Time) error {
+	return m.SetWriteDeadline(t)
 }
