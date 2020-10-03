@@ -23,6 +23,8 @@ type ControllerConfig struct {
 // AccessoryPairing details a paired accessory
 type AccessoryPairing struct {
 	Name             string
+	DeviceName       string
+	Model            string
 	DeviceID         string
 	PublicKey        []byte
 	IPConnectionInfo client.IPConnectionInfo

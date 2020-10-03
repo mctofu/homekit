@@ -59,9 +59,11 @@ func importPairing(ctx context.Context, configPath, controllerName string, devic
 
 	cfg.AccessoryPairings = append(cfg.AccessoryPairings,
 		&config.AccessoryPairing{
-			Name:      name,
-			DeviceID:  deviceID,
-			PublicKey: publicKey,
+			Name:       name,
+			DeviceName: pairDevice.Name,
+			Model:      pairDevice.Model,
+			DeviceID:   deviceID,
+			PublicKey:  publicKey,
 			IPConnectionInfo: client.IPConnectionInfo{
 				IPAddress: pairDevice.IPs[0].String(),
 				Port:      pairDevice.Port,
