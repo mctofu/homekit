@@ -85,6 +85,8 @@ func pair(
 	cfg.AccessoryPairings = append(cfg.AccessoryPairings,
 		&config.AccessoryPairing{
 			Name:             name,
+			DeviceName:       pairDevice.Name,
+			Model:            pairDevice.Model,
 			DeviceID:         accConn.DeviceID,
 			PublicKey:        accConn.PublicKey,
 			IPConnectionInfo: accConn.IPConnectionInfo,
