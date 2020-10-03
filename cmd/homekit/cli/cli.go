@@ -11,6 +11,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/hashicorp/go-multierror"
 	"github.com/mctofu/homekit/client"
 	"github.com/mctofu/homekit/cmd/homekit/cli/config"
 	"github.com/spf13/cobra"
@@ -88,7 +89,7 @@ func clientCommandRunner(cmd *cobra.Command, clientCmd clientCommand) runner {
 	name := cmd.Flags().StringP("name", "n", "", "Name of accessory to act on")
 	markFlagRequired(cmd, "name")
 
-	cfgCmd := func(ctx context.Context, configPath, controllerName string) error {
+	cfgCmd := func(ctx context.Context, configPath, controllerName string) (rErr error) {
 		cfg, err := config.ReadControllerConfig(configPath, controllerName)
 		if err != nil {
 			return fmt.Errorf("read controller config: %v", err)
@@ -98,6 +99,11 @@ func clientCommandRunner(cmd *cobra.Command, clientCmd clientCommand) runner {
 		if err != nil {
 			return err
 		}
+		defer func() {
+			if cErr := accClient.Close(); cErr != nil {
+				rErr = multierror.Append(rErr, cErr)
+			}
+		}()
 
 		clientCtx := clientContext{
 			AccessoryName: *name,
