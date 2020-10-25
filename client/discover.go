@@ -96,10 +96,11 @@ func parseFlag(v string) byte {
 	if v == "" {
 		return 0
 	}
-	f, err := strconv.Atoi(v)
+	f, err := strconv.ParseUint(v, 10, 8)
 	if err != nil {
 		panic(err)
 	}
+
 	return byte(f)
 }
 
