@@ -66,7 +66,7 @@ func deviceServer() (*httptest.Server, error) {
 	})
 
 	testServer := httptest.NewUnstartedServer(hcServer.Mux)
-	testServer.Listener = hap.NewTCPListener(testServer.Listener.(*net.TCPListener), switchCtx)
+	testServer.Listener = hcServer
 	testServer.Start()
 
 	return testServer, nil
