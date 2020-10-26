@@ -11,6 +11,7 @@ import (
 	"testing"
 
 	"github.com/brutella/hc/accessory"
+	"github.com/brutella/hc/characteristic"
 	"github.com/brutella/hc/crypto"
 	"github.com/brutella/hc/event"
 	"github.com/brutella/hc/hap"
@@ -105,6 +106,7 @@ func (w *wrapperContext) SetSessionForConnection(s hap.Session, c net.Conn) {
 	w.Context.SetSessionForConnection(&syncSession{session: s}, c)
 }
 
+// syncSession works around a race condition accessing crypto in tests
 type syncSession struct {
 	session hap.Session
 	mutex   sync.Mutex
@@ -157,4 +159,16 @@ func (s *syncSession) SetPairVerifyHandler(c hap.PairVerifyHandler) {
 // Connection returns the associated connection
 func (s *syncSession) Connection() net.Conn {
 	return s.session.Connection()
+}
+
+func (s *syncSession) IsSubscribedTo(ch *characteristic.Characteristic) bool {
+	return s.session.IsSubscribedTo(ch)
+}
+
+func (s *syncSession) Subscribe(ch *characteristic.Characteristic) {
+	s.session.Subscribe(ch)
+}
+
+func (s *syncSession) Unsubscribe(ch *characteristic.Characteristic) {
+	s.session.Unsubscribe(ch)
 }
