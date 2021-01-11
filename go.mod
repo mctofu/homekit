@@ -5,7 +5,7 @@ go 1.14
 require (
 	github.com/brutella/dnssd v1.1.1
 	github.com/brutella/hc v1.2.3
-	github.com/google/uuid v1.1.3
+	github.com/google/uuid v1.1.4
 	github.com/hashicorp/go-multierror v1.1.0
 	github.com/spf13/cobra v1.1.1
 	github.com/stretchr/testify v1.6.1
