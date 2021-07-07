@@ -10,11 +10,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/brutella/dnssd"
+	"github.com/grandcat/zeroconf"
 )
 
 const (
-	homekitService = "_hap._tcp.local."
+	homekitService = "_hap._tcp"
+	homekitDomain  = ".local"
 )
 
 // FeatureFlags captures Bonjour TXT feature flags
@@ -70,26 +71,57 @@ func Discover(ctx context.Context, onDevice func(context.Context, *AccessoryDevi
 	ctx, cancel := context.WithTimeout(ctx, searchDuration)
 	defer cancel()
 
-	addFn := func(srv dnssd.Service) {
-		onDevice(ctx, &AccessoryDevice{
-			Name:         srv.Name,
-			ID:           srv.Text["id"],
-			Model:        srv.Text["md"],
-			IPs:          srv.IPs,
-			Port:         srv.Port,
-			FeatureFlags: FeatureFlags(parseFlag(srv.Text["ff"])),
-			StatusFlags:  StatusFlags(parseFlag(srv.Text["sf"])),
-		})
+	resolver, err := zeroconf.NewResolver()
+	if err != nil {
+		return fmt.Errorf("failed to initialize resolver: %v", err)
 	}
 
-	rmvFn := func(srv dnssd.Service) {
+	var devicesWG sync.WaitGroup
+	devicesWG.Add(1)
+	devicesCh := make(chan *zeroconf.ServiceEntry)
+	go func() {
+		for dev := range devicesCh {
+			txt := parseTXT(dev.Text)
+			onDevice(ctx, &AccessoryDevice{
+				Name:         dev.Instance,
+				ID:           txt["id"],
+				Model:        txt["md"],
+				IPs:          append(dev.AddrIPv4, dev.AddrIPv6...),
+				Port:         dev.Port,
+				FeatureFlags: FeatureFlags(parseFlag(txt["ff"])),
+				StatusFlags:  StatusFlags(parseFlag(txt["sf"])),
+			})
+		}
+		devicesWG.Done()
+	}()
+
+	if err := resolver.Browse(ctx, homekitService, homekitDomain, devicesCh); err != nil {
+		return fmt.Errorf("browse: %v", err)
 	}
 
-	if err := dnssd.LookupType(ctx, homekitService, addFn, rmvFn); err != nil && err != context.DeadlineExceeded {
+	devicesWG.Wait()
+	<-ctx.Done()
+	if err := ctx.Err(); err != nil && err != context.DeadlineExceeded {
 		return err
 	}
 
 	return nil
+}
+
+func parseTXT(txts []string) map[string]string {
+	mapped := make(map[string]string)
+
+	for _, txt := range txts {
+		parts := strings.SplitN(txt, "=", 2)
+		if len(parts) == 2 {
+			key := strings.ToLower(parts[0])
+			value := parts[1]
+
+			mapped[key] = value
+		}
+	}
+
+	return mapped
 }
 
 func parseFlag(v string) byte {
