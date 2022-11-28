@@ -10,6 +10,7 @@ import (
 	"github.com/brutella/hc/db"
 	"github.com/brutella/hc/hap"
 	"github.com/brutella/hc/hap/pair"
+	"github.com/brutella/hc/util"
 )
 
 // AccessoryPairingConfig contains accessory details needed to perform a pairing.
@@ -17,7 +18,16 @@ type AccessoryPairingConfig struct {
 	DeviceID         string
 	PIN              string
 	IPConnectionInfo IPConnectionInfo
+	PairingMethod    PairingMethod
 }
+
+// PairingMethod identifies the pairing method needed to pair the device
+type PairingMethod int
+
+const (
+	PairingMethodPairSetup PairingMethod = iota
+	PairingMethodPairSetupWithAuth
+)
 
 // SetupClient negotiates an initial pairing between a controller and an accessory.
 type SetupClient struct {
@@ -46,7 +56,10 @@ func (s *SetupClient) Pair(ctx context.Context, a *AccessoryPairingConfig, c *Co
 	controller := pair.NewSetupClientController(a.PIN, clientDevice, deviceDB)
 	endpoint := fmt.Sprintf("http://%s:%d/pair-setup", a.IPConnectionInfo.IPAddress, a.IPConnectionInfo.Port)
 
-	pairStartReq, err := ioutil.ReadAll(controller.InitialPairingRequest())
+	out := util.NewTLV8Container()
+	out.SetByte(pair.TagPairingMethod, pairingMethodTLVValue(a.PairingMethod))
+	out.SetByte(pair.TagSequence, pair.PairStepStartRequest.Byte())
+	pairStartReq, err := ioutil.ReadAll(out.BytesBuffer())
 	if err != nil {
 		return nil, err
 	}
@@ -119,8 +132,19 @@ func (s *SetupClient) sendTLV8(ctx context.Context, endpoint string, body []byte
 		return nil, err
 	}
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("invalid status code %v", resp.StatusCode)
+		return nil, fmt.Errorf("invalid status: %v", resp.Status)
 	}
 
 	return respBody, nil
+}
+
+func pairingMethodTLVValue(p PairingMethod) byte {
+	switch p {
+	case PairingMethodPairSetup:
+		return 0
+	case PairingMethodPairSetupWithAuth:
+		return 1
+	default:
+		panic(fmt.Sprintf("unknown pairing method: %v", p))
+	}
 }

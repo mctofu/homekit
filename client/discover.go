@@ -22,13 +22,26 @@ const (
 type FeatureFlags byte
 
 func (f FeatureFlags) String() string {
-	switch f {
-	case 0:
-		return "No support for HAP Pairing"
-	case 1:
-		return "Supports HAP Pairing"
+	var pairingTypes []string
+	switch {
+	case f&1 > 0:
+		pairingTypes = append(pairingTypes, "Hardware")
+	case f&2 > 0:
+		pairingTypes = append(pairingTypes, "Software")
+	}
+
+	if len(pairingTypes) == 0 {
+		return "No support for HAP Pairing or uncertified"
+	}
+	return fmt.Sprintf("Supports HAP Pairing with %s authentication", strings.Join(pairingTypes, " and "))
+}
+
+func (f FeatureFlags) PairingMethod() PairingMethod {
+	switch {
+	case f&1 > 0:
+		return PairingMethodPairSetupWithAuth
 	default:
-		return "Unknown"
+		return PairingMethodPairSetup
 	}
 }
 
