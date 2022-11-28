@@ -71,6 +71,7 @@ func pair(
 				IPAddress: pairDevice.IPs[0].String(),
 				Port:      pairDevice.Port,
 			},
+			PairingMethod: pairDevice.FeatureFlags.PairingMethod(),
 		},
 		&client.ControllerIdentity{
 			DeviceID:   cfg.DeviceID,
