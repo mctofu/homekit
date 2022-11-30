@@ -38,7 +38,7 @@ type CharacteristicReadResponse struct {
 
 	Type        *string  `json:"type,omitempty"`
 	Status      *int     `json:"status,omitempty"`
-	Events      *int     `json:"ev,omitempty"`
+	Events      *bool    `json:"ev,omitempty"`
 	Permissions []string `json:"perms,omitempty"`
 
 	Format *string `json:"format,omitempty"`
@@ -153,10 +153,11 @@ func (a *AccessoryClient) SetCharacteristics(ctx context.Context, writeReq *Char
 	if err != nil {
 		return nil, err
 	}
+	req.Header.Set("Content-Type", "application/hap+json")
 
 	resp, err := a.transport.Do(req)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("transport.Do: %v", err)
 	}
 	defer resp.Body.Close()
 
