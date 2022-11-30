@@ -153,10 +153,11 @@ func (a *AccessoryClient) SetCharacteristics(ctx context.Context, writeReq *Char
 	if err != nil {
 		return nil, err
 	}
+	req.Header.Set("Content-Type", "application/hap+json")
 
 	resp, err := a.transport.Do(req)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("transport.Do: %v", err)
 	}
 	defer resp.Body.Close()
 
