@@ -38,7 +38,7 @@ type CharacteristicReadResponse struct {
 
 	Type        *string  `json:"type,omitempty"`
 	Status      *int     `json:"status,omitempty"`
-	Events      *int     `json:"ev,omitempty"`
+	Events      *bool    `json:"ev,omitempty"`
 	Permissions []string `json:"perms,omitempty"`
 
 	Format *string `json:"format,omitempty"`

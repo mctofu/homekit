@@ -15,7 +15,7 @@ type RawCharacteristic struct {
 	Value Value  `json:"value"`
 
 	Type        string   `json:"type"`
-	Events      *int     `json:"ev,omitempty"`
+	Events      *bool    `json:"ev,omitempty"`
 	Permissions []string `json:"perms,omitempty"`
 
 	Format string `json:"format"`
